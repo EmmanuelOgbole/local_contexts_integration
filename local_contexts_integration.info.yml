@@ -1,0 +1,30 @@
+# The name of the module, as it will appear in the Drupal admin UI.
+name: "Local Contexts Integration"
+
+# The type of extension
+type: module
+
+# A short description of what the module does
+description: "Integrates the Local Contexts API with Islandora to support Traditional Knowledge Labels to aid in digital collections."
+
+# The package under which this module is categorized on the Extend page.
+package: Custom
+
+# Specifies the compatible Drupal core versions.
+core_version_requirement: ^10
+
+# The minimum PHP version required for this module to work.
+php: "^7.4 || ^8"
+
+# Module dependencies. These modules must be enabled for this module to function.
+dependencies:
+  - drupal:system  # Core system module, always required.
+  - drupal:block    # Enables block functionality for the custom block being created.
+  - drupal:field    # Required for interacting with fields on nodes and entities (e.g., field_local_contexts).
+  - drupal:media    # Needed to work with media objects associated with repository items.
+  - drupal:config   # Allows module configuration (e.g., API key, field mapping).
+  - drupal:views    # Optional, but supports listing and filtering Repository Items if needed.
+  - drupal:node     # Required to interact with nodes, such as the Repository Item content type.
+
+# The route name for the module’s configuration page.
+configure: local_contexts_integration.settings

@@ -1,0 +1,14 @@
+# Defines the menu link for the Local Contexts Integration settings page.
+local_contexts_integration.settings:
+  # The title of the menu item as it appears in the admin menu.
+  title: "Local Contexts Integration"
+
+  # A brief description of what this settings page does.
+  description: "Settings for Local Contexts Integration."
+  
+  # The route that this menu link points to (must match the route in routing.yml).
+  route_name: local_contexts_integration.settings
+
+  # Defines the parent menu under which this link appears.
+  # 'system.admin_config_services' places it under the "Web services" section.
+  parent: system.admin_config_services

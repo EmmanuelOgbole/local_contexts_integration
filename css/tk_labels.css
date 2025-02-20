@@ -1,0 +1,73 @@
+/* General styles for the TK labels block */
+.local-contexts-block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+  
+.local-contexts-block h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+  
+.tk-labels-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+  
+.tk-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+  
+.tk-label:focus {
+    outline: none;
+}
+  
+.tk-label-img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+  
+.tk-label-img:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+  
+.tk-label-img:focus {
+    outline: none; 
+}
+  
+.tk-label-text-container {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: left;
+    width: 100%;
+    padding: 10px 0 0 0;
+    
+}
+  
+.tk-label-text-container.open {
+    max-height: 1000px;
+    
+}
+  

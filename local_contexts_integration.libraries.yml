@@ -1,0 +1,10 @@
+tk_labels:
+  version: 1.x
+  js:
+    js/tk_labels_display.js: {}
+  css:
+    theme:
+      css/tk_labels.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

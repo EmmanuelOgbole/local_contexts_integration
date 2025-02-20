@@ -1,0 +1,18 @@
+<div class="local-contexts-block">
+  {% if tk_labels %}
+    <ul class="tk-labels-list">
+      {% for label in tk_labels %}
+        <li>
+          <a href="#" class="tk-label">
+            <img src="{{ label.img_url|default('#')|e('html') }}" alt="{{ label.name|default('Label Image')|e('html') }}" class="tk-label-img" />
+            <div class="tk-label-text-container">
+              {{ label.label_text|default('No text')|e('html') }}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No TK labels available.</p>
+  {% endif %}
+</div>

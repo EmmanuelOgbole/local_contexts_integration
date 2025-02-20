@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Provides hooks for the Local Contexts Integration module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function local_contexts_integration_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.local_contexts_integration') {
+    return '<p>' . t('Provides integration with the Local Contexts API for displaying Traditional Knowledge Labels.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function local_contexts_integration_theme() {
+  return [
+    'local_contexts_block' => [
+      'variables' => [
+        'unique_id' => '',
+        'title' => '',
+        'date_added' => '',
+        'date_modified' => '',
+        'tk_labels' => [],
+    ],
+    'template' => 'local-contexts-block',
+],
+];
+}
+
+/**
+ * Implements hook_install().
+ */
+function local_contexts_integration_install() {
+    $theme = \Drupal::config('system.theme')->get('default');
+    $plugin_id = 'local_contexts_block';
+    $block_storage = \Drupal::service('entity_type.manager')->getStorage('block');
+  
+    // Check if the block already exists to avoid duplicates.
+    $existing_blocks = $block_storage->loadByProperties([
+      'theme' => $theme,
+      'plugin' => $plugin_id,
+    ]);
+  
+    if (empty($existing_blocks)) {
+      $block = $block_storage->create([
+        'id' => \Drupal::service('uuid')->generate(), 
+        'theme' => $theme,
+        'plugin' => $plugin_id,
+        'region' => 'sidebar', 
+        'weight' => -20, // Ensure it appears at the top.
+        'status' => 1, // Enable the block.
+      ]);
+      $block->save();
+    }
+}
