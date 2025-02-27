@@ -3,9 +3,12 @@
 namespace Drupal\local_contexts_integration\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Block\BlockFormInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\local_contexts_integration\Controller\LocalContextsController;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a Local Contexts Data Block.
@@ -24,6 +27,7 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
    * @var \Drupal\local_contexts_integration\Controller\LocalContextsController
    */
   protected $localContextsController;
+  protected $requestStack;
 
   /**
    * Constructs a new LocalContextsBlock instance.
@@ -37,9 +41,10 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
    * @param \Drupal\local_contexts_integration\Controller\LocalContextsController $localContextsController
    *   The Local Contexts controller.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LocalContextsController $localContextsController) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LocalContextsController $localContextsController, RequestStack $request_stack) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->localContextsController = $localContextsController;
+    $this->requestStack = $request_stack;  // Assign the RequestStack
   }
 
   /**
@@ -50,7 +55,8 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('local_contexts_integration.controller')
+      $container->get('local_contexts_integration.controller'),
+      $container->get('request_stack')
     );
   }
 
@@ -58,8 +64,16 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
  * {@inheritdoc}
  */
   public function build() {
+
+     // Fetch user preference from session.
+    $session = $this->requestStack->getCurrentRequest()->getSession();
+    $display_option = $session->get('tk_label_display_option', 'both'); // Default to 'both'
+ 
     // Fetch data from the Local Contexts controller.
     $data = $this->localContextsController->fetchProjectData();
+
+    $form = \Drupal::formBuilder()->getForm('Drupal\local_contexts_integration\Form\TkLabelDisplayForm');
+    \Drupal::logger('local_contexts_integration')->notice('Form: ' . print_r(\Drupal::formBuilder()->getForm('Drupal\local_contexts_integration\Form\TkLabelDisplayForm'), TRUE));
 
     
     // Ensure the data structure is valid and defaults are set.
@@ -69,6 +83,14 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
     $date_modified = $data['date_modified'] ?? 'Unknown';
     $tk_labels = $data['tk_labels'] ?? [];
 
+    if ($display_option === 'name_only' && !empty($tk_labels)) {
+      foreach ($tk_labels as &$label) {
+          if (isset($label['label_text'])) {
+              unset($label['label_text']); // Ensure correct key is removed
+          }
+      }
+      unset($label); // Important: Unset the reference to prevent side effects
+    }
 
     // Render the block with structured data.
     return [
@@ -78,6 +100,7 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       '#date_added' => $date_added,
       '#date_modified' => $date_modified,
       '#tk_labels' => $tk_labels,
+      '#form' => $form,
       '#attached' => [
         'library' => [
           'local_contexts_integration/tk_labels',
@@ -86,8 +109,10 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       '#cache' => [
         'max-age' => 0,
       ],
+
     ];
   }
+  
 
   /**
    * {@inheritdoc}

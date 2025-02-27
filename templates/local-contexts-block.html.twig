@@ -1,11 +1,27 @@
+
 <div class="local-contexts-block">
+  {% if form %}
+  <div class="form-container">
+    {{ form }}
+  </div>
+{% else %}
+  <p>The form is not available.</p>
+{% endif %}
+
+
   {% if tk_labels %}
     <ul class="tk-labels-list">
       {% for label in tk_labels %}
         <li>
           <a href="#" class="tk-label">
-            <img src="{{ label.img_url|default('#')|e('html') }}" alt="{{ label.name|default('Label Image')|e('html') }}" class="tk-label-img" />
+            <img 
+              src="{{ label.img_url|default('#')|e('html') }}" 
+              alt="{{ label.name|default('Label Image')|e('html') }}" 
+              title="{{ label.name|default('Label Name')|e('html') }}"
+              class="tk-label-img" 
+            />
             <div class="tk-label-text-container">
+              <strong>{{ label.name|default('No Label Title')|e('html') }}</strong>: 
               {{ label.label_text|default('No text')|e('html') }}
             </div>
           </a>
@@ -16,3 +32,4 @@
     <p>No TK labels available.</p>
   {% endif %}
 </div>
+

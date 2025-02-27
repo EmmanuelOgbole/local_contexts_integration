@@ -10,7 +10,7 @@
  */
 function local_contexts_integration_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
   if ($route_name === 'help.page.local_contexts_integration') {
-    return '<p>' . t('Provides integration with the Local Contexts API for displaying Traditional Knowledge Labels.') . '</p>';
+    return '<p>' . \Drupal::translation()->translate('Provides integration with the Local Contexts API for displaying Traditional Knowledge Labels.') . '</p>';
   }
 }
 
@@ -25,36 +25,51 @@ function local_contexts_integration_theme() {
         'title' => '',
         'date_added' => '',
         'date_modified' => '',
+        'form' => NULL,
         'tk_labels' => [],
+      ],
+      'template' => 'local-contexts-block',
     ],
-    'template' => 'local-contexts-block',
-],
-];
+  ];
 }
 
 /**
  * Implements hook_install().
  */
 function local_contexts_integration_install() {
-    $theme = \Drupal::config('system.theme')->get('default');
-    $plugin_id = 'local_contexts_block';
-    $block_storage = \Drupal::service('entity_type.manager')->getStorage('block');
-  
-    // Check if the block already exists to avoid duplicates.
-    $existing_blocks = $block_storage->loadByProperties([
-      'theme' => $theme,
-      'plugin' => $plugin_id,
-    ]);
-  
-    if (empty($existing_blocks)) {
+  $theme = \Drupal::config('system.theme')->get('default');
+  $plugin_id = 'local_contexts_block';
+  $block_id = 'local_contexts_integration_custom_block';
+  $block_storage = \Drupal::service('entity_type.manager')->getStorage('block');
+
+  // Check if the block already exists to avoid duplicates.
+  $existing_blocks = $block_storage->loadByProperties([
+    'theme' => $theme,
+    'plugin' => $plugin_id,
+  ]);
+
+  if (empty($existing_blocks)) {
       $block = $block_storage->create([
-        'id' => \Drupal::service('uuid')->generate(), 
-        'theme' => $theme,
-        'plugin' => $plugin_id,
-        'region' => 'sidebar', 
-        'weight' => -20, // Ensure it appears at the top.
-        'status' => 1, // Enable the block.
+          'id' => $block_id,
+          'theme' => $theme,
+          'plugin' => $plugin_id,
+          'region' => 'sidebar',
+          'weight' => -20,
+          'status' => 1, // Enable the block.
+          'visibility' => [
+              'entity_bundle:node' => [
+                  'id' => 'entity_bundle:node',
+                  'negate' => false, // Ensure it's visible only for this bundle.
+                  'context_mapping' => [
+                      'node' => '@node.node_route_context:node', // Maps to the current node context.
+                  ],
+                  'bundles' => [
+                      'islandora_object' => 'islandora_object', // Show only for Islandora Objects.
+                  ],
+              ],
+          ],
       ]);
       $block->save();
-    }
+  }
 }
+
