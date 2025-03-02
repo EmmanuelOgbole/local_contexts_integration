@@ -36,9 +36,7 @@ Installation instructions will be provided based on the method Eric chooses to m
 ## Screenshots
 Below are examples of how the module integrates with Drupal content:
 
-![Local Contexts Labels on a Drupal Page](docs/screenshots/example1.png)
 
-![Field Selection for Project ID](docs/screenshots/example2.png)
 
 ## Configuration
 - **Specify the Field for Project ID**:
