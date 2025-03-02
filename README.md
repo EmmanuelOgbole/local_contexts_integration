@@ -60,13 +60,14 @@ Contributions are welcome! To contribute:
 Please ensure your code adheres to the project's coding standards and includes appropriate tests.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt) file for details.
 
 ## Contact
 For questions or support, please contact the module maintainer:
 
-- **Name**: 
-- **GitHub Profile**: 
+- **Name**: Brandon Weigel
+- **Email**: brandonw@bceln.ca
+- **GitHub Profile**: https://github.com/bondjimbond
 
 For more information on the Local Contexts initiative, visit the [Local Contexts website](https://localcontexts.org/).
  
