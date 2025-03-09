@@ -64,7 +64,7 @@ class TkLabelDisplayForm extends FormBase {
 
     $form['form_container']['display_option'] = [
         '#type' => 'radios',
-        '#title' => $this->t('TK Label Display Option'),
+        '#title' => $this->t('Display Option'),
         '#options' => [
             'both' => $this->t('Show both name and text'),
             'name_only' => $this->t('Show name only'),

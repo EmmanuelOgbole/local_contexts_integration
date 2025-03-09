@@ -26,4 +26,6 @@
 #form-container {
     display: none; /* Initially hide the form container */
     margin-top: 10px; /* Add some spacing between the button and the form */
+    width: 80%;
+    margin: auto;
 }
