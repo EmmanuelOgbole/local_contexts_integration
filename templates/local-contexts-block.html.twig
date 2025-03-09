@@ -8,7 +8,6 @@
   <p>The form is not available.</p>
 {% endif %}
 
-
   {% if tk_labels %}
     <ul class="tk-labels-list">
       {% for label in tk_labels %}
@@ -22,7 +21,8 @@
             />
             <div class="tk-label-text-container">
               <strong>{{ label.name|default('No Label Title')|e('html') }}</strong>: 
-              {{ label.label_text|default('No text')|e('html') }}
+              {# changed label_text to default_text #}
+              {{ label.default_text|default('No Label text')|e('html') }}
             </div>
           </a>
         </li>

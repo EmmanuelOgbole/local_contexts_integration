@@ -154,8 +154,6 @@ class LocalContextsController extends ControllerBase {
     return [
       'unique_id' => $data['unique_id'] ?? null,
       'title' => $data['title'] ?? null,
-      'date_added' => $data['date_added'] ?? null,
-      'date_modified' => $data['date_modified'] ?? null,
       'tk_labels' => $data['tk_labels'] ?? [],
     ];
   }

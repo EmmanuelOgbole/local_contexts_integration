@@ -3,10 +3,8 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border: 1px solid #ddd;
     padding: 5px;
     border-radius: 8px;
-    background-color: #f9f9f9;
 }
   
 .local-contexts-block h2 {
