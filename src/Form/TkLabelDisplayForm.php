@@ -47,23 +47,41 @@ class TkLabelDisplayForm extends FormBase {
     $session = $this->requestStack->getCurrentRequest()->getSession();
     $default_value = $session->get('tk_label_display_option', 'both');
 
-    $form['display_option'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('TK Label Display Option'),
-      '#options' => [
-        'both' => $this->t('Show both name and text'),
-        'name_only' => $this->t('Show name only'),
-      ],
-      '#default_value' => $default_value,
+    // Add a container for the toggle button
+    $form['toggle_button_container'] = [
+      '#markup' => '<div id="toggle-button-container">
+                      <div id="toggle-form-button">
+                          <i class="fas fa-cog"></i>
+                      </div>
+                    </div>',
     ];
 
-    $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Apply'),
+    // Wrap the form elements in a container that can be toggled
+    $form['form_container'] = [
+        '#type' => 'container',
+        '#attributes' => ['id' => 'form-container'],
     ];
+
+    $form['form_container']['display_option'] = [
+        '#type' => 'radios',
+        '#title' => $this->t('TK Label Display Option'),
+        '#options' => [
+            'both' => $this->t('Show both name and text'),
+            'name_only' => $this->t('Show name only'),
+        ],
+        '#default_value' => $default_value,
+    ];
+
+    $form['form_container']['submit'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Apply'),
+    ];
+
+    // Attach the library
+    $form['#attached']['library'][] = 'local_contexts_integration/toggle_form';
 
     return $form;
-  }
+}
 
   /**
    * {@inheritdoc}
