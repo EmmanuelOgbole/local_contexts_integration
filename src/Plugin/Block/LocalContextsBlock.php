@@ -73,8 +73,6 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
     $data = $this->localContextsController->fetchProjectData();
 
     $form = \Drupal::formBuilder()->getForm('Drupal\local_contexts_integration\Form\TkLabelDisplayForm');
-    \Drupal::logger('local_contexts_integration')->notice('Form: ' . print_r(\Drupal::formBuilder()->getForm('Drupal\local_contexts_integration\Form\TkLabelDisplayForm'), TRUE));
-
     
     // Ensure the data structure is valid and defaults are set.
     $unique_id = $data['unique_id'] ?? 'N/A';
