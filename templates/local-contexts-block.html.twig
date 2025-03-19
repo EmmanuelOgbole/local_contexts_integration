@@ -11,11 +11,10 @@
     <ul class="tk-labels-list">
       {% for label in tk_labels %}
         <li>
+          {% if display_option == 'show_name' %}
+            <div class="tk-label-name">{{ label.name|default('No Label Title')|e('html') }}</div>
+          {% endif %}
           <a href="#" class="tk-label">
-
-            {% if display_option == 'show_name' %}
-              <div class="tk-label-name">{{ label.name|default('No Label Title')|e('html') }}</div>
-            {% endif %}
 
             <img 
               src="{{ label.img_url|default('#')|e('html') }}" 

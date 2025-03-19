@@ -24,7 +24,7 @@ function local_contexts_integration_theme() {
         'unique_id' => '',
         'form' => NULL,
         'tk_labels' => [],
-        'display_option' => 'show_name',  // Pass display_option here
+        'display_option' => 'show_name',  
       ],
       'template' => 'local-contexts-block',
     ],
