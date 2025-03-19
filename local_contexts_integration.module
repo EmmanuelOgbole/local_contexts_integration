@@ -51,8 +51,8 @@ function local_contexts_integration_install() {
           'id' => $block_id,
           'theme' => $theme,
           'plugin' => $plugin_id,
-          'region' => 'sidebar',
-          'weight' => -20,
+          //'region' => 'sidebar',
+          //'weight' => -20,
           'status' => 1, // Enable the block.
           // 'visibility' => [
           //     'entity_bundle:node' => [
