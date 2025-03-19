@@ -12,11 +12,10 @@
           // Toggle to show or hide the text box
           if (textContainer) {
             const isOpen = textContainer.classList.contains('open');
-            document.querySelectorAll('.tk-label-text-container.open').forEach(function (container) {
-              container.classList.remove('open');
-            });
-
-            if (!isOpen) {
+            // Toggle the current container's visibility without affecting others
+            if (isOpen) {
+              textContainer.classList.remove('open');
+            } else {
               textContainer.classList.add('open');
             }
           }

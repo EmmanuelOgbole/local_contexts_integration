@@ -22,9 +22,9 @@ function local_contexts_integration_theme() {
     'local_contexts_block' => [
       'variables' => [
         'unique_id' => '',
-        'title' => '',
         'form' => NULL,
         'tk_labels' => [],
+        'display_option' => 'show_name',  // Pass display_option here
       ],
       'template' => 'local-contexts-block',
     ],
@@ -51,21 +51,7 @@ function local_contexts_integration_install() {
           'id' => $block_id,
           'theme' => $theme,
           'plugin' => $plugin_id,
-          //'region' => 'sidebar',
-          //'weight' => -20,
           'status' => 1, // Enable the block.
-          // 'visibility' => [
-          //     'entity_bundle:node' => [
-          //         'id' => 'entity_bundle:node',
-          //         'negate' => false, // Ensure it's visible only for this bundle.
-          //         'context_mapping' => [
-          //             'node' => '@node.node_route_context:node', // Maps to the current node context.
-          //         ],
-          //         'bundles' => [
-          //             'islandora_object' => 'islandora_object', // Show only for Islandora Objects.
-          //         ],
-          //     ],
-          // ],
       ]);
       $block->save();
   }

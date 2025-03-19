@@ -45,7 +45,7 @@ class TkLabelDisplayForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $session = $this->requestStack->getCurrentRequest()->getSession();
-    $default_value = $session->get('tk_label_display_option', 'both');
+    $default_value = $session->get('tk_label_display_option', 'show_name');
 
     // Add a container for the toggle button
     $form['toggle_button_container'] = [
@@ -66,8 +66,8 @@ class TkLabelDisplayForm extends FormBase {
         '#type' => 'radios',
         '#title' => $this->t('Display Option'),
         '#options' => [
-            'both' => $this->t('Show both name and text'),
-            'name_only' => $this->t('Show name only'),
+          'show_name' => $this->t('Show Name'),
+          'hide_name' => $this->t('Do Not Show Name'),
         ],
         '#default_value' => $default_value,
     ];

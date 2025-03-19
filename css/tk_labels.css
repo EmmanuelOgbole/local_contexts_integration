@@ -24,6 +24,7 @@
     text-align: center;
     cursor: pointer;
     outline: none;
+    text-decoration: none; /* Remove underline from the label */
 }
   
 .tk-label:focus {
@@ -54,8 +55,17 @@
     color: #555;
     text-align: left;
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 10px 10px 0 10px;
+    text-decoration: none; /* Remove underline inside the text container */
     
+}
+
+.tk-label-name {
+    color: #555;
+    font-size: 0.9rem;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
   
 .tk-label-text-container.open {

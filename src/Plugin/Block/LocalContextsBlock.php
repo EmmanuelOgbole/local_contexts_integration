@@ -65,9 +65,10 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
  */
   public function build() {
 
-     // Fetch user preference from session.
+    // Fetch user preference from session.
     $session = $this->requestStack->getCurrentRequest()->getSession();
-    $display_option = $session->get('tk_label_display_option', 'both'); // Default to 'both'
+    $display_option = $session->get('tk_label_display_option', 'show_name'); // Default to 'show_name'
+     
  
     // Fetch data from the Local Contexts controller.
     $data = $this->localContextsController->fetchProjectData();
@@ -76,26 +77,16 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
     
     // Ensure the data structure is valid and defaults are set.
     $unique_id = $data['unique_id'] ?? 'N/A';
-    $title = $data['title'] ?? 'Untitled Project';
     $tk_labels = $data['tk_labels'] ?? [];
 
-    if ($display_option === 'name_only' && !empty($tk_labels)) {
-      foreach ($tk_labels as &$label) {
-        // changed label_text to defailt_text
-          if (isset($label['default_text'])) {
-              unset($label['default_text']); // Ensure correct key is removed
-          }
-      }
-      unset($label); // Important: Unset the reference to prevent side effects
-    }
 
     // Render the block with structured data.
     return [
       '#theme' => 'local_contexts_block',
       '#unique_id' => $unique_id,
-      '#title' => $title,
       '#tk_labels' => $tk_labels,
       '#form' => $form,
+      '#display_option' => $display_option,
       '#attached' => [
         'library' => [
           'local_contexts_integration/tk_labels',
