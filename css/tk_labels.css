@@ -6,20 +6,13 @@
     padding: 5px;
     border-radius: 8px;
 }
-  
+
 .tk-labels-list {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     list-style: none;
     padding: 0;
-}
-
-.tk-label-header {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
 }
 
 .tk-label {
@@ -29,13 +22,34 @@
     color: #333;
     text-align: center;
     cursor: pointer;
-    /* text-decoration: none !important; */
+    text-decoration: none !important;
+}
+
+.tk-label:hover {
+    text-decoration: none !important;
 }
   
+
 .tk-label:focus {
     outline: none;
 }
-  
+
+.tk-label-header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.tk-label-name {
+    flex-wrap: wrap;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .tk-label-img {
     width: 90px;
     height: auto;
@@ -47,35 +61,19 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
   
+
 .tk-label-text-container {
     overflow: hidden;
     max-height: 0;
+    padding: 0; /* Remove padding when hidden */
     transition: max-height 0.5s ease, padding 0.3s ease;
     font-size: 0.9rem;
     color: #555;
     text-align: left;
     width: 100%;
-    padding: 20px;
-    flex-wrap: wrap; /* Allow wrapping */
 }
-  
-.tk-label-name {
-    color: #555;
-    font-size: 0.95rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    flex-wrap: wrap; /* Allow wrapping */
-}
-  
+
 .tk-label-text-container.open {
-    max-height: 1000px;
-}
-
-
-.tk-label {
-    text-decoration: none !important;
-}
-
-.tk-label:hover {
-    text-decoration: none !important;
+    max-height: 500px; /* Adjust based on expected content size */
+    padding: 20px; /* Add padding only when open */
 }
