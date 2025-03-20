@@ -5,7 +5,6 @@
     gap: 15px;
     padding: 5px;
     border-radius: 8px;
-    text-decoration: none !important;
 }
   
 .tk-labels-list {
@@ -14,9 +13,15 @@
     gap: 15px;
     list-style: none;
     padding: 0;
-    text-decoration: none !important;
 }
-  
+
+.tk-label-header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
 .tk-label {
     display: flex;
     flex-direction: column;
@@ -24,7 +29,7 @@
     color: #333;
     text-align: center;
     cursor: pointer;
-    text-decoration: none !important;
+    /* text-decoration: none !important; */
 }
   
 .tk-label:focus {
@@ -32,7 +37,7 @@
 }
   
 .tk-label-img {
-    width: 100px;
+    width: 90px;
     height: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -51,6 +56,7 @@
     text-align: left;
     width: 100%;
     padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping */
 }
   
 .tk-label-name {
@@ -65,13 +71,6 @@
     max-height: 1000px;
 }
 
-
-.tk-label-header {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-}
 
 .tk-label {
     text-decoration: none !important;
