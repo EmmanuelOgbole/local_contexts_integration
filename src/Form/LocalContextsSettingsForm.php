@@ -38,7 +38,6 @@ class LocalContextsSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-
     $form['api_key'] = [
       '#type' => 'textfield',
       '#title' => $this->t('API Key'),
@@ -59,6 +58,17 @@ class LocalContextsSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    $form['display_option'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Display Option'),
+      '#options' => [
+        'show_name' => $this->t('Show Name'),
+        'hide_name' => $this->t('Do Not Show Name'),
+      ],
+      '#default_value' => $config->get('display_option') ?: 'show_name',
+      '#description' => $this->t('Choose whether to show or hide the TK label names globally.'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -66,10 +76,16 @@ class LocalContextsSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $display_option = $form_state->getValue('display_option');
+    if (!in_array($display_option, ['show_name', 'hide_name'])) {
+      $display_option = 'show_name';
+    }
+
     $this->config('local_contexts_integration.settings')
       ->set('api_key', $form_state->getValue('api_key'))
       ->set('field_identifier', $form_state->getValue('field_identifier'))
       ->set('api_url', $form_state->getValue('api_url'))
+      ->set('display_option', $display_option) // Ensured valid display option
       ->save();
 
     parent::submitForm($form, $form_state);

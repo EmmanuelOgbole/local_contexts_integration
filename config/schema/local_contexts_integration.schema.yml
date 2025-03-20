@@ -11,3 +11,9 @@ local_contexts_integration.settings:
     field_identifier:
       type: string
       label: "Default Field for Retrieving Project ID"
+    display_option:
+      type: string
+      label: "Display Option"
+      allowed_values:
+        - 'show_name'
+        - 'hide_name'

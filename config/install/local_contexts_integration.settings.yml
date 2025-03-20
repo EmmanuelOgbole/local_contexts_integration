@@ -1,3 +1,4 @@
 api_key: ""
-api_url: "https://sandbox.localcontextshub.org/api/v2/projects"
+api_url: "https://sandbox.localcontextshub.org/api/v2"
 field_identifier: "field_local_contexts"
+display_option: "show_name"

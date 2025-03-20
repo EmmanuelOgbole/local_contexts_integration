@@ -1,12 +1,4 @@
 <div class="local-contexts-block">
-  {% if form %}
-  <div class="form-container">
-    {{ form }}
-  </div>
-  {% else %}
-  <p>The form is not available.</p>
-  {% endif %}
-
   {% if tk_labels %}
     <ul class="tk-labels-list">
       {% for label in tk_labels %}

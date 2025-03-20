@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\local_contexts_integration\Controller\LocalContextsController;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a Local Contexts Data Block.
@@ -27,7 +26,6 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
    * @var \Drupal\local_contexts_integration\Controller\LocalContextsController
    */
   protected $localContextsController;
-  protected $requestStack;
 
   /**
    * Constructs a new LocalContextsBlock instance.
@@ -41,10 +39,9 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
    * @param \Drupal\local_contexts_integration\Controller\LocalContextsController $localContextsController
    *   The Local Contexts controller.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LocalContextsController $localContextsController, RequestStack $request_stack) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LocalContextsController $localContextsController) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->localContextsController = $localContextsController;
-    $this->requestStack = $request_stack;  // Assign the RequestStack
   }
 
   /**
@@ -56,7 +53,6 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       $plugin_id,
       $plugin_definition,
       $container->get('local_contexts_integration.controller'),
-      $container->get('request_stack')
     );
   }
 
@@ -66,14 +62,13 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
   public function build() {
 
     // Fetch user preference from session.
-    $session = $this->requestStack->getCurrentRequest()->getSession();
-    $display_option = $session->get('tk_label_display_option', 'show_name'); // Default to 'show_name'
+    $config = \Drupal::config('local_contexts_integration.settings');
+    $display_option = $config->get('display_option') ?: 'show_name';
      
  
     // Fetch data from the Local Contexts controller.
     $data = $this->localContextsController->fetchProjectData();
 
-    $form = \Drupal::formBuilder()->getForm('Drupal\local_contexts_integration\Form\TkLabelDisplayForm');
     
     // Ensure the data structure is valid and defaults are set.
     $unique_id = $data['unique_id'] ?? 'N/A';
@@ -85,7 +80,6 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       '#theme' => 'local_contexts_block',
       '#unique_id' => $unique_id,
       '#tk_labels' => $tk_labels,
-      '#form' => $form,
       '#display_option' => $display_option,
       '#attached' => [
         'library' => [
