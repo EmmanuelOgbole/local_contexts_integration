@@ -5,6 +5,7 @@
     gap: 15px;
     padding: 5px;
     border-radius: 8px;
+    text-decoration: none !important;
 }
   
 .tk-labels-list {
@@ -13,6 +14,7 @@
     gap: 15px;
     list-style: none;
     padding: 0;
+    text-decoration: none !important;
 }
   
 .tk-label {
@@ -22,7 +24,7 @@
     color: #333;
     text-align: center;
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: none !important;
 }
   
 .tk-label:focus {
@@ -48,7 +50,7 @@
     color: #555;
     text-align: left;
     width: 100%;
-    padding: 10px 20px 0;
+    padding: 20px;
 }
   
 .tk-label-name {
@@ -56,6 +58,7 @@
     font-size: 0.95rem;
     font-weight: bold;
     margin-bottom: 10px;
+    flex-wrap: wrap; /* Allow wrapping */
 }
   
 .tk-label-text-container.open {
@@ -68,4 +71,12 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
+}
+
+.tk-label {
+    text-decoration: none !important;
+}
+
+.tk-label:hover {
+    text-decoration: none !important;
 }
