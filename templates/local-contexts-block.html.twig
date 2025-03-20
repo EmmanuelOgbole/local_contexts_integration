@@ -11,18 +11,23 @@
     <ul class="tk-labels-list">
       {% for label in tk_labels %}
         <li>
-          {% if display_option == 'show_name' %}
-            <div class="tk-label-name">{{ label.name|default('No Label Title')|e('html') }}</div>
-          {% endif %}
-          <a href="#" class="tk-label">
 
-            <img 
-              src="{{ label.img_url|default('#')|e('html') }}" 
-              alt="{{ label.name|default('Label Image')|e('html') }}" 
-              title="{{ label.name|default('Label Name')|e('html') }}"
-              class="tk-label-img" 
-            />
+          <a href="#" class="tk-label">
+           <div class="tk-label-header">
+              {% if display_option == 'show_name' %}
+                <div class="tk-label-name">{{ label.name|default('No Label Title')|e('html') }}</div>
+              {% endif %}
+              <img 
+                src="{{ label.img_url|default('#')|e('html') }}" 
+                alt="{{ label.name|default('Label Image')|e('html') }}" 
+                title="{{ label.name|default('Label Name')|e('html') }}"
+                class="tk-label-img" 
+              />
+            </div>
             <div class="tk-label-text-container">
+              {% if display_option == 'hide_name' %}
+                <div><strong>{{ label.name|default('No Label Title')|e('html') }}</strong></div>
+              {% endif %}
               {{ label.label_text|default('No Label text')|e('html') }}
             </div>
           </a>
