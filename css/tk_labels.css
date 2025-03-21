@@ -5,6 +5,9 @@
     gap: 15px;
     padding: 5px;
     border-radius: 8px;
+    max-width: 1200px; /* Adjust based on your layout needs */
+    margin: 0 auto; /* Centers the block horizontally */
+    width: 90%; /* Ensures it scales responsively */
 }
 
 .tk-labels-list {
@@ -83,3 +86,5 @@
     max-height: 500px; /* Adjust based on expected content size */
     padding: 20px; /* Add padding only when open */
 }
+
+
