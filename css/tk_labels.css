@@ -17,6 +17,7 @@
 
 .tk-label {
     display: flex;
+    justify-content: space-between; /* Pushes items apart */
     flex-direction: column;
     align-items: center;
     color: #333;
@@ -40,6 +41,8 @@
     gap: 10px;
     align-items: center;
     padding-top: 20px;
+    padding-right: 10px;
+    flex-grow: 1; /* Allows text to take available space */
 }
 
 
@@ -52,6 +55,7 @@
 }
 
 .tk-label-img {
+    margin-left: auto; /* Pushes the image to the right */
     width: 90px;
     height: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
