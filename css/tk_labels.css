@@ -39,8 +39,8 @@
     align-items: center;
     justify-content: space-between; /* Pushes text left, image right */
     width: 100%;
-    gap: 10px;
-    padding: 10px 15px 0 0; /* Adjusted padding for spacing */
+    gap: 20px;
+    padding: 10px 15px 0 10px; /* Adjusted padding for spacing */
 }
 
 /* Label name styling */
@@ -49,7 +49,7 @@
     color: #555;
     font-size: 0.95rem;
     font-weight: bold;
-    text-align: left; /* Ensures text is always left-aligned */
+    text-align: right; /* Ensures text is always left-aligned */
     word-wrap: break-word;
 }
 
