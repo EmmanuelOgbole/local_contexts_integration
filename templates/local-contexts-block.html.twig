@@ -4,7 +4,7 @@
       {% for label in tk_labels %}
         <li>
 
-          <a href="#" class="tk-label">
+          <div  class="tk-label">
 
            <div class="tk-label-header">
               {% if display_option == 'show_name' %}
@@ -26,7 +26,7 @@
               {{ label.label_text|default('No Label text')|e('html') }}
             </div>
 
-          </a>
+          </div>
 
         </li>
         
