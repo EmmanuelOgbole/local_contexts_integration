@@ -37,7 +37,7 @@
 .tk-label-header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Pushes text left, image right */
+    justify-content: center;
     width: 100%;
     gap: 20px;
     padding: 10px 15px 0 10px; /* Adjusted padding for spacing */
