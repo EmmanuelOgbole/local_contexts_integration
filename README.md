@@ -36,7 +36,8 @@ drush en local_contexts_integration -y
 ## Screenshots
 
 Below are examples of how the module integrates with Drupal content:
-![Alt Text](templates/C4B0B2BB-DBE6-40F2-9FA1-921D4579A30E_1_201_a.jpeg)
+
+![Block at the far right](templates/C4B0B2BB-DBE6-40F2-9FA1-921D4579A30E_1_201_a.jpeg)
 ![Alt Text](templates/2A7732E2-7DC2-4927-AA97-EC624180FABD_1_201_a.jpeg)
 
 ## Configuration
