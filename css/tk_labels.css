@@ -58,7 +58,6 @@
     flex-shrink: 0; /* Prevents the image from shrinking */
     width: 90px;
     height: auto;
-    margin-left: auto; /* Pushes the image to the right */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
