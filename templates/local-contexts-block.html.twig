@@ -10,13 +10,15 @@
               {% if display_option == 'show_name' %}
                 <div class="tk-label-name">{{ label.name|default('No Label Title')|e('html') }}</div>
               {% endif %}
-
+              
+              <div class="tk-label-img"> 
               <img 
                 src="{{ label.img_url|default('#')|e('html') }}" 
                 alt="{{ label.name|default('Label Image')|e('html') }}" 
                 title="{{ label.name|default('Label Name')|e('html') }}"
                 class="tk-label-img" 
               />
+              </div>
             </div>
 
             <div class="tk-label-text-container">

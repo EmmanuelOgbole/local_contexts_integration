@@ -17,7 +17,6 @@
 
 .tk-label {
     display: flex;
-    justify-content: space-between; /* Pushes items apart */
     flex-direction: column;
     align-items: center;
     color: #333;
@@ -30,43 +29,45 @@
     text-decoration: none !important;
 }
   
-
 .tk-label:focus {
     outline: none;
 }
 
+/* Flexbox fixes to ensure text is always left, image always right */
 .tk-label-header {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
     align-items: center;
-    padding-top: 20px;
-    padding-right: 10px;
-    flex-grow: 1; /* Allows text to take available space */
+    justify-content: space-between; /* Pushes text left, image right */
+    width: 100%;
+    gap: 10px;
+    padding: 10px 15px 0 0; /* Adjusted padding for spacing */
 }
 
-
+/* Label name styling */
 .tk-label-name {
-    flex-wrap: wrap;
+    flex-grow: 1; /* Allows text to take up available space */
     color: #555;
     font-size: 0.95rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    text-align: left; /* Ensures text is always left-aligned */
+    word-wrap: break-word;
 }
 
+/* Ensures image is always rightmost */
 .tk-label-img {
-    margin-left: auto; /* Pushes the image to the right */
+    flex-shrink: 0; /* Prevents the image from shrinking */
     width: 90px;
     height: auto;
+    margin-left: auto; /* Pushes the image to the right */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-  
+
 .tk-label-img:hover {
     transform: scale(1.2);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
   
-
+/* Label text container styling */
 .tk-label-text-container {
     overflow: hidden;
     max-height: 0;
@@ -78,6 +79,7 @@
     width: 100%;
 }
 
+/* Expandable text section */
 .tk-label-text-container.open {
     max-height: 500px; /* Adjust based on expected content size */
     padding: 20px; /* Add padding only when open */
