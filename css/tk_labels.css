@@ -48,7 +48,7 @@
 .tk-label-name {
     flex-grow: 1; /* Allows text to take up available space */
     color: #555;
-    font-size: 0.95rem;
+    font-size: clamp(0.95rem, 1.5rem, 2.5rem);
     font-weight: bold;
     text-align: right;
     word-wrap: break-word;
