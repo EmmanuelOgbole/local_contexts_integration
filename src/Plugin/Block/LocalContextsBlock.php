@@ -56,24 +56,24 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
     );
   }
 
-/**
- * {@inheritdoc}
- */
-  public function build() {
 
+  public function build() {
     // Fetch user preference from session.
     $config = \Drupal::config('local_contexts_integration.settings');
     $display_option = $config->get('display_option') ?: 'show_name';
-     
- 
+
     // Fetch data from the Local Contexts controller.
     $data = $this->localContextsController->fetchProjectData();
 
-    
     // Ensure the data structure is valid and defaults are set.
     $unique_id = $data['unique_id'] ?? 'N/A';
     $tk_labels = $data['tk_labels'] ?? [];
 
+
+    // Check if there are tk_labels and a valid project_id
+    if (empty($tk_labels) || $unique_id === 'N/A') {
+      return [];
+    }
 
     // Render the block with structured data.
     return [
@@ -89,10 +89,9 @@ class LocalContextsBlock extends BlockBase implements ContainerFactoryPluginInte
       '#cache' => [
         'max-age' => 0,
       ],
-
     ];
-  }
-  
+ }
+ 
 
   /**
    * {@inheritdoc}
