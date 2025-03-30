@@ -153,6 +153,7 @@ class LocalContextsController extends ControllerBase {
   protected function filterApiResponse(array $data) {
     return [
       'tk_labels' => $data['tk_labels'] ?? [],
+      'unique_id' => $data['unique_id'] ?? null,
     ];
   }
 
