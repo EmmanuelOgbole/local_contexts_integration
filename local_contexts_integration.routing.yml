@@ -1,5 +1,4 @@
 local_contexts_integration.settings:
-  # path: "admin/config/Islandora/localcontexts"
   path: "config/web-services/localcontexts"
   defaults:
     _form: '\Drupal\local_contexts_integration\Form\LocalContextsSettingsForm'
