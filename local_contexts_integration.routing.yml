@@ -1,5 +1,5 @@
 local_contexts_integration.settings:
-  path: "config/web-services/localcontexts"
+  path: "/admin/config/services/localcontexts"
   defaults:
     _form: '\Drupal\local_contexts_integration\Form\LocalContextsSettingsForm'
     _title: "Local Contexts Integration Settings"
